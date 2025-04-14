@@ -265,7 +265,9 @@ public abstract class AbstractIndexManager implements IndexManager {
     public void checkAndCreateIndex() throws IOException {
         // Check if index name exists
         final String indexAlias = getIndexName(null);
+        LOG.info("Checking if index exists with alias [{}]", indexAlias);
         final boolean indexExists = ismPolicyManagementStrategy.checkIfIndexExistsOnServer(indexAlias);
+        LOG.info("Index exists [{}]", indexExists);
 
         if (!indexExists) {
             final CreateIndexRequest createIndexRequest = ismPolicyManagementStrategy.getCreateIndexRequest(indexAlias);
